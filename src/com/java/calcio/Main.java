@@ -1,10 +1,6 @@
 package com.java.calcio;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Random;
+import java.util.*;
 
 public class Main {
     private static final String[] Players = {
@@ -72,7 +68,7 @@ public class Main {
         System.out.println("-----------------------------------------");
         System.out.println("Players:");
         for (Player player : team.getPlayers()) {
-            System.out.println("Name: " + player.getName() + ", Role: " + player.getRole());
+            System.out.println("Name: " + player.getName() + ", Role: " + player.getRole()+ ", Birthdate: " + player.getBirthdate());
         }
         System.out.println("*****************************************");
     }
