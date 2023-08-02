@@ -1,10 +1,11 @@
 package com.java.calcio;
 
 public class Coach extends Person {
-    private String strategy;
+    private final String strategy;
 
-    public Coach(String name, String birthdate, String strategy) {
-        super(name, birthdate);
+
+    public Coach(String homeCoach, String homeCoachBirthdate, String strategy) {
+        super(homeCoach, homeCoachBirthdate);
         this.strategy = strategy;
     }
 
@@ -12,7 +13,4 @@ public class Coach extends Person {
         return strategy;
     }
 
-    public String getName() {
-    return name;
-    }
 }

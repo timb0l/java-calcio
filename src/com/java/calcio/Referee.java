@@ -1,14 +1,13 @@
 package com.java.calcio;
 
-public class Player extends Person {
+public class Referee extends Person {
     private final String role;
 
-    public Player(String name, String birthdate, String role) {
+    public Referee(String name, String birthdate, String role){
         super(name, birthdate);
         this.role = role;
     }
-
-    public String getRole() {
+    public String getRole(){
         return role;
     }
 }

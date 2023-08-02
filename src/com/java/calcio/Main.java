@@ -29,8 +29,9 @@ public class Main {
     };
     private static final String[] Roles = {"Goalkeeper", "Defender", "Midfielder", "Forward"};
 
-    private static final String[] Strategy = {
-            "Defensive", "Offensive", "Balanced"};
+    private static final String[] Strategy = {"Defensive", "Offensive", "Balanced"};
+
+    private static final String[] Referee ={"Michael Jordan", "Kobe Bryant", "Dua Lipa"};
 
     private static String genRanBirthday() {
         Calendar calendar = new GregorianCalendar();
@@ -48,12 +49,36 @@ public class Main {
 
 
     public static void main(String[] args) {
-        ArrayList<Player> players = new ArrayList<>();
+//Home Team
+        ArrayList<Player> homePlayers = new ArrayList<>();
 //Goalkeeper
         String goalkeeperName = Players[new Random().nextInt(Players.length)];
         String randomBirthdate = genRanBirthday();
+        homePlayers.add(new Player(goalkeeperName, randomBirthdate, "Goalkeeper"));
+//Player
+        for (int i = 0; i < 11; i++) {
+            String randomName = Players[new Random().nextInt(Players.length)];
+            randomBirthdate = genRanBirthday();
+            String randomRole = Roles[new Random().nextInt(Roles.length)];
 
-        players.add(new Player(goalkeeperName, randomBirthdate, "Goalkeeper"));
+            if (!randomRole.equals("Goalkeeper")){
+                homePlayers.add(new Player(randomName, randomBirthdate, randomRole));
+            } else {
+                i--;
+            }
+        }
+//Coach
+        String homeCoach = Players[new Random().nextInt(Players.length)];
+        Coach coach = new Coach(homeCoach, randomBirthdate, Strategy[new Random().nextInt(Strategy.length)]);
+
+        Team homeTeam = new Team("Home Team AC", homePlayers, coach);
+
+//Away Team
+        ArrayList<Player> awayPlayers = new ArrayList<>();
+//Goalkeeper
+        goalkeeperName = Players[new Random().nextInt(Players.length)];
+        randomBirthdate = genRanBirthday();
+        homePlayers.add(new Player(goalkeeperName, randomBirthdate, "Goalkeeper"));
 
         for (int i = 0; i < 11; i++) {
             String randomName = Players[new Random().nextInt(Players.length)];
@@ -61,28 +86,58 @@ public class Main {
             String randomRole = Roles[new Random().nextInt(Roles.length)];
 
             if (!randomRole.equals("Goalkeeper")){
-                players.add(new Player(randomName, randomBirthdate, randomRole));
+                awayPlayers.add(new Player(randomName, randomBirthdate, randomRole));
             } else {
                 i--;
             }
         }
+        String awayCoach = Players[new Random().nextInt(Players.length)];
+        coach = new Coach(awayCoach, randomBirthdate, Strategy[new Random().nextInt(Strategy.length)]);
+        Team awayTeam = new Team("Away Team AC", awayPlayers, coach);
 
-        String coachName = Players[new Random().nextInt(Players.length)];
-        String coachBirthdate = genRanBirthday();
-        String randomStrategy = Strategy[new Random().nextInt(Strategy.length)];
 
-        Coach coach = new Coach(coachName, coachBirthdate, randomStrategy);
-        Team team = new Team(players, coach);
-
-        System.out.println("*****************************************");
-
-        System.out.println("Coach: " + team.getCoach().getName() + ", Strategy: " + team.getCoach().getStrategy());
-        System.out.println("-----------------------------------------");
+//Print
+        //home
+        System.out.println("***************HOME**TEAM*******************");
+        System.out.println("Coach: " + homeTeam.getCoach().getName() + ", Birthdate: " + coach.getBirthdate() + ", Strategy: " + homeTeam.getCoach().getStrategy());
         System.out.println("Players:");
-        for (Player player : team.getPlayers()) {
+        for (Player player : homeTeam.getPlayers()) {
             System.out.println("Name: " + player.getName() + ", Role: " + player.getRole()+ ", Birthdate: " + player.getBirthdate());
         }
-        System.out.println("*****************************************");
+        System.out.println("********************************************");
+
+        //away
+        System.out.println("***************AWAY**TEAM*******************");
+        System.out.println("Coach: " + awayTeam.getCoach().getName() + ", Birthdate: " + coach.getBirthdate() + ", Strategy: " + homeTeam.getCoach().getStrategy());
+        System.out.println("Players:");
+        for (Player awayPlayer : awayTeam.getPlayers()) {
+            System.out.println("Name: " + awayPlayer.getName() + ", Role: " + awayPlayer.getRole()+ ", Birthdate: " + awayPlayer.getBirthdate());
+        }
+        System.out.println("********************************************");
+//referee
+        System.out.println("*******************REFEREE*******************");
+        Referee referee = new Referee(Referee[new Random().nextInt(Referee.length)], genRanBirthday(), "Referee");
+        System.out.println("Referee: " + referee.getName() + ", Role: " + referee.getRole() + ", Birthdate: " + referee.birthdate);
+        System.out.println("********************************************");
+
+//Simulation
+
+        System.out.println("********************************************");
+        Match match = new Match(homeTeam, awayTeam, referee);
+        match.startMatch();
+
+        match.scoreGoal();
+        match.printScore();
+
+        match.scoreGoal();
+        match.printScore();
+
+        match.scoreGoal();
+        match.printScore();
+
+
+        match.concludeMatch();
+        System.out.println("********************************************");
     }
 }
 
