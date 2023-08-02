@@ -28,9 +28,7 @@ public class Main {
             "Francesco Russo", "Raffaele Martini", "Federico Coppola", "Emanuele Bellini", "Alessio Ricci"
     };
     private static final String[] Roles = {"Goalkeeper", "Defender", "Midfielder", "Forward"};
-
     private static final String[] Strategy = {"Defensive", "Offensive", "Balanced"};
-
     private static final String[] Referee ={"Michael Jordan", "Kobe Bryant", "Dua Lipa"};
 
     private static String genRanBirthday() {
@@ -46,7 +44,6 @@ public class Main {
         Random random = new Random();
         return random.nextInt(max - min + 1) + min;
     }
-
 
     public static void main(String[] args) {
 //Home Team
@@ -95,7 +92,6 @@ public class Main {
         coach = new Coach(awayCoach, randomBirthdate, Strategy[new Random().nextInt(Strategy.length)]);
         Team awayTeam = new Team("Away Team AC", awayPlayers, coach);
 
-
 //Print
         //home
         System.out.println("***************HOME**TEAM*******************");
@@ -121,7 +117,6 @@ public class Main {
         System.out.println("********************************************");
 
 //Simulation
-
         System.out.println("********************************************");
         Match match = new Match(homeTeam, awayTeam, referee);
         match.startMatch();
@@ -134,7 +129,6 @@ public class Main {
 
         match.scoreGoal();
         match.printScore();
-
 
         match.concludeMatch();
         System.out.println("********************************************");
