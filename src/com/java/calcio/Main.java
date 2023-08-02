@@ -49,12 +49,22 @@ public class Main {
 
     public static void main(String[] args) {
         ArrayList<Player> players = new ArrayList<>();
+//Goalkeeper
+        String goalkeeperName = Players[new Random().nextInt(Players.length)];
+        String randomBirthdate = genRanBirthday();
+
+        players.add(new Player(goalkeeperName, randomBirthdate, "Goalkeeper"));
+
         for (int i = 0; i < 11; i++) {
             String randomName = Players[new Random().nextInt(Players.length)];
-            String randomBirthdate = genRanBirthday();
+            randomBirthdate = genRanBirthday();
             String randomRole = Roles[new Random().nextInt(Roles.length)];
 
-            players.add(new Player(randomName, randomBirthdate, randomRole));
+            if (!randomRole.equals("Goalkeeper")){
+                players.add(new Player(randomName, randomBirthdate, randomRole));
+            } else {
+                i--;
+            }
         }
 
         String coachName = Players[new Random().nextInt(Players.length)];
