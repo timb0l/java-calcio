@@ -1,6 +1,9 @@
 package com.java.calcio;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Random;
 
 public class Main {
@@ -31,18 +34,33 @@ public class Main {
 
     private static final String[] Strategy = {
             "Defensive", "Offensive", "Balanced"};
+
+    private static Date genRanBirthday() {
+        Calendar calendar = new GregorianCalendar();
+        int year = getRanNumber(1985, 2000);
+        int month = getRanNumber(0, 11);
+        int day = getRanNumber(1, 28);
+        calendar.set(year, month, day);
+        return calendar.getTime();
+    }
+    private static int getRanNumber(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(max - min + 1) + min;
+    }
+
+
     public static void main(String[] args) {
         ArrayList<Player> players = new ArrayList<>();
         for (int i = 0; i < 11; i++) {
             String randomName = Players[new Random().nextInt(Players.length)];
-            String randomBirthdate = ""; // generate random birthdate
+            Date randomBirthdate = genRanBirthday();
             String randomRole = Roles[new Random().nextInt(Roles.length)];
 
             players.add(new Player(randomName, randomBirthdate, randomRole));
         }
 
         String coachName = Players[new Random().nextInt(Players.length)];
-        String coachBirthdate = ""; // generate random birthdate
+        Date coachBirthdate = genRanBirthday();
         String randomStrategy = Strategy[new Random().nextInt(Strategy.length)];
 
         Coach coach = new Coach(coachName, coachBirthdate, randomStrategy);

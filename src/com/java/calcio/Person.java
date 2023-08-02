@@ -1,10 +1,12 @@
 package com.java.calcio;
 
+import java.util.Date;
+
 public class Person {
     protected String name;
-    protected String birthdate;
+    protected Date birthdate;
 
-    public Person(String name, String birthdate) {
+    public Person(String name, Date birthdate) {
         this.name = name;
         this.birthdate = birthdate;
     }
@@ -13,7 +15,7 @@ public class Person {
         return name;
     }
 
-    public String getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 }
