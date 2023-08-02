@@ -1,11 +1,9 @@
 package com.java.calcio;
 
-import java.util.Date;
-
 public class Player extends Person {
     private String role;
 
-    public Player(String name, Date birthdate, String role) {
+    public Player(String name, String birthdate, String role) {
         super(name, birthdate);
         this.role = role;
     }

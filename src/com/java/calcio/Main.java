@@ -1,5 +1,6 @@
 package com.java.calcio;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
@@ -31,13 +32,14 @@ public class Main {
     private static final String[] Strategy = {
             "Defensive", "Offensive", "Balanced"};
 
-    private static Date genRanBirthday() {
+    private static String genRanBirthday() {
         Calendar calendar = new GregorianCalendar();
         int year = getRanNumber(1985, 2000);
         int month = getRanNumber(0, 11);
         int day = getRanNumber(1, 28);
         calendar.set(year, month, day);
-        return calendar.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(calendar.getTime());
     }
     private static int getRanNumber(int min, int max) {
         Random random = new Random();
@@ -49,14 +51,14 @@ public class Main {
         ArrayList<Player> players = new ArrayList<>();
         for (int i = 0; i < 11; i++) {
             String randomName = Players[new Random().nextInt(Players.length)];
-            Date randomBirthdate = genRanBirthday();
+            String randomBirthdate = genRanBirthday();
             String randomRole = Roles[new Random().nextInt(Roles.length)];
 
             players.add(new Player(randomName, randomBirthdate, randomRole));
         }
 
         String coachName = Players[new Random().nextInt(Players.length)];
-        Date coachBirthdate = genRanBirthday();
+        String coachBirthdate = genRanBirthday();
         String randomStrategy = Strategy[new Random().nextInt(Strategy.length)];
 
         Coach coach = new Coach(coachName, coachBirthdate, randomStrategy);
